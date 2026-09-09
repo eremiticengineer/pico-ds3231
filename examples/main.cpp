@@ -6,7 +6,6 @@
 #include "semphr.h"
 
 #include <string>
-#include <fmt/base.h>
 
 #include "DS3231.h"
 
@@ -20,7 +19,7 @@ namespace ds3231_config {
     inline constexpr uint SCL = 9;
 }
 
-std::string dateTime;
+char dateTime[20];
 SemaphoreHandle_t i2c_mutex;
 
 void ds3231_task(void* pvParameters) {
@@ -34,11 +33,19 @@ void ds3231_task(void* pvParameters) {
                 time.tm_mday, time.tm_mon + 1, time.tm_year + 1900,
                 time.tm_hour, time.tm_min, time.tm_sec);
 
-              dateTime = fmt::format("{:02d}/{:02d}/{:04d} {:02d}:{:02d}:{:02d}",
-                time.tm_mday, time.tm_mon + 1, time.tm_year + 1900,
-                time.tm_hour, time.tm_min, time.tm_sec);
+                snprintf(
+                    dateTime,
+                    sizeof(dateTime),
+                    "%02d/%02d/%04d %02d:%02d:%02d",
+                    time.tm_mday,
+                    time.tm_mon + 1,
+                    time.tm_year + 1900,
+                    time.tm_hour,
+                    time.tm_min,
+                    time.tm_sec
+                );                
 
-              printf("%s\n", dateTime.c_str());
+              printf("%s\n", dateTime);
           }
           else {
               printf("Failed to read time\n");

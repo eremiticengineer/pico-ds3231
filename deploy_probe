@@ -3,11 +3,11 @@
 #  -f interface/cmsis-dap.cfg \
 #  -f target/rp2040.cfg \
 #  -c "adapter speed 5000" \
-#  -c "program build/ds3231test.elf verify reset exit"
+#  -c "program build/pico_ds3231_example.elf verify reset exit"
 
 # Pico2
 sudo openocd \
   -f interface/cmsis-dap.cfg \
   -f target/rp2350.cfg \
   -c "adapter speed 5000" \
-  -c "program build/ds3231test.elf verify reset exit"
+  -c "program build-pico2/pico_ds3231_example.uf2 verify reset exit"
