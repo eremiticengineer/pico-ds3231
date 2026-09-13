@@ -86,3 +86,7 @@ Unplug the pico and plug in with bootsel held down for programming. Build and up
 ## References
 
 [Setting accurate time with DS3231.h library](https://forum.arduino.cc/t/setting-accurate-time-with-ds3231-h-library/627993/7)
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
